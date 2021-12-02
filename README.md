@@ -1,4 +1,5 @@
 # Grandmaster
+[[./crown.svg]]
 Cross-platform (Windows, Mac, Linux) Chess in Java
 
 ## Running 🏃💨
