@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Grandmaster
+Comment=Chess
+Exec=java -jar ~/Projects/Gradmaster/shade/grandmaster.jar %U
+Icon=~/Projects/Grandmaster/crown.png
+Terminal=false
+Type=Application
+Encoding=UTF-8
+Categories=Network;Application;
+Name[en_US]=Grandmaster
