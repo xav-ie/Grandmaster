@@ -1,5 +1,5 @@
 # Grandmaster
-![crown logo](./crown.svg)
+<img src="./crown.svg" width="200" alt="crown logo" />
 Cross-platform (Windows, Mac, Linux) Chess in Java
 
 ## Running 🏃💨
