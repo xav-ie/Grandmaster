@@ -32,7 +32,7 @@ public class Pawn extends Piece {
 			if (from.x == to.x && from.y - 1 == to.y) {
 				return true;
 			}
-			if (from.x == 6 and to.x == 4 && from.y == to.y)
+			if (from.x == 6 && to.x == 4 && from.y == to.y)
 			{
 				return true;
 			}
@@ -50,7 +50,7 @@ public class Pawn extends Piece {
 			if (from.x == to.x && from.y - 1 == to.y) {
 				return true;
 			}
-			if (from.x == 1 and to.x == 3 && from.y == to.y)
+			if (from.x == 1 && to.x == 3 && from.y == to.y)
 			{
 				return true;
 			}
