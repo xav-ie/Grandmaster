@@ -121,12 +121,12 @@ public class Game {
         {
           if(gb.blocks[x][y].piece.movePossible(gb.blocks[x][y],gb.blocks[kingx][kingy],gb))
           {
-            if(in_turn_player.color == "B")
+            if(in_turn_player.color.equals("B"))
             {
               black_check_flag = true;
               return(true);
             }
-              if(in_turn_player.color == "W")
+              if(in_turn_player.color.equals("W))
             {
               white_check_flag = true;
               return(true);
@@ -181,11 +181,11 @@ public class Game {
            //if a king was just taken, game over
            if(victim instanceof King)
            {
-             if(in_turn_player.color == "W")
+             if(in_turn_player.color.equals("W"))
              {
                white_victory = true;
              }
-             if(in_turn_player.color == "B")
+             if(in_turn_player.color.equals("B"))
              {
                black_victory = true;
              }
