@@ -1,0 +1,21 @@
+@font-face {
+    font-family: 'Roboto Bold';
+    src: url('Roboto-Bold.ttf');
+}
+
+@font-face {
+    font-family: 'Roboto Light';
+    src: url('Roboto-Light.ttf');
+}
+
+@font-face {
+    font-family: 'Nunito';
+    src: url('Nunito-Regular.ttf');
+}
+
+.root {
+    /* -fx-background-image: url("crown.png");*/
+		-fx-background-color: rgba(255,150,255,1);
+		-fx-font-family: "Nunito";
+}
+
