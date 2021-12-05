@@ -56,29 +56,30 @@
 <?import javafx.scene.shape.Ellipse?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-
+<?import grandmaster.PlayerStats?>
+<?import grandmaster.ChessGrid?>
 
 <StackPane prefHeight="676.0" prefWidth="996.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="grandmaster.HelloFX">
    <children>
-      <VBox prefHeight="526.0" prefWidth="690.0">
+      <VBox fx:id="mainApp" prefHeight="526.0" prefWidth="690.0">
          <children>
           <MenuBar>
             <menus>
-              <Menu mnemonicParsing="false" text="Grandmaster">
+              <Menu text="_Grandmaster">
                      <items>
-                        <MenuItem mnemonicParsing="false" onAction="#newGame" text="New Game">
+                        <MenuItem onAction="#newGame" text="_New Game">
                            <styleClass>
                               <String fx:value="normal" />
                               <String fx:value="medium" />
                            </styleClass>
                         </MenuItem>
-                        <MenuItem mnemonicParsing="false" onAction="#toggleAboutGrandmaster" text="About Grandmaster">
+                        <MenuItem onAction="#toggleAboutGrandmaster" text="_About Grandmaster">
                            <styleClass>
                               <String fx:value="normal" />
                               <String fx:value="medium" />
                            </styleClass>
                         </MenuItem>
-                        <MenuItem mnemonicParsing="false" onAction="#quitApplication" text="Quit">
+                        <MenuItem onAction="#quitApplication" text="_Quit">
                            <styleClass>
                               <String fx:value="normal" />
                               <String fx:value="medium" />
@@ -86,9 +87,9 @@
                         </MenuItem>
                      </items>
                      <graphic>
-                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@crown.png" />
+                              <Image url="@crown_small.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -102,186 +103,14 @@
           <SplitPane dividerPositions="0.4" focusTraversable="true" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
             <items>
                   <VBox prefHeight="200.0" prefWidth="100.0">
-                     <children>
-                        <VBox disable="true" prefHeight="200.0" prefWidth="100.0" spacing="7.0" VBox.vgrow="ALWAYS">
-                           <children>
-                              <HBox alignment="CENTER_LEFT" prefHeight="44.0" prefWidth="416.0" spacing="15.0">
-                                 <children>
-                                    <Label text="Player Two">
-                                       <font>
-                                          <Font size="21.0" />
-                                       </font>
-                                       <styleClass>
-                                          <String fx:value="thin" />
-                                          <String fx:value="large" />
-                                       </styleClass>
-                                    </Label>
-                                    <Ellipse radiusX="15.0" radiusY="15.0" stroke="BLACK" strokeType="INSIDE" />
-                                 </children>
-                              </HBox>
-                              <Label text="Captured Pieces:">
-                                 <styleClass>
-                                    <String fx:value="bold" />
-                                    <String fx:value="medium" />
-                                 </styleClass>
-                              </Label>
-                              <FlowPane prefHeight="200.0" prefWidth="200.0" />
-                           </children>
-                           <padding>
-                              <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
-                           </padding>
-                           <opaqueInsets>
-                              <Insets />
-                           </opaqueInsets>
-                        </VBox>
-                        <VBox prefHeight="200.0" prefWidth="100.0" spacing="7.0" VBox.vgrow="ALWAYS">
-                           <children>
-                              <HBox alignment="CENTER_LEFT" prefHeight="44.0" prefWidth="416.0" spacing="15.0">
-                                 <children>
-                                    <Label text="Player One">
-                                       <font>
-                                          <Font size="21.0" />
-                                       </font>
-                                       <styleClass>
-                                          <String fx:value="thin" />
-                                          <String fx:value="large" />
-                                       </styleClass>
-                                    </Label>
-                                    <Ellipse fill="WHITE" radiusX="15.0" radiusY="15.0" stroke="BLACK" strokeType="INSIDE" />
-                                 </children>
-                              </HBox>
-                              <Label text="Captured Pieces:">
-                                 <styleClass>
-                                    <String fx:value="bold" />
-                                    <String fx:value="medium" />
-                                 </styleClass>
-                              </Label>
-                              <FlowPane prefHeight="200.0" prefWidth="200.0" />
-                           </children>
-                           <padding>
-                              <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
-                           </padding>
-                        </VBox>
+                    <children>
+											<PlayerStats playerID="2"/> 
+											<PlayerStats playerID="1"/>
+											 <!-- <fx:include fx:id="playerTwoVBox" source="playerStats.fxml" /> -->
+											 <!-- <fx:include fx:id="playerOneVBox" source="playerStats.fxml" /> -->
                      </children>
                   </VBox>
-                  <GridPane alignment="CENTER" focusTraversable="true" gridLinesVisible="true" nodeOrientation="LEFT_TO_RIGHT">
-                    <columnConstraints>
-                      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                    </columnConstraints>
-                    <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
-                     <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" text="0">
-                           <styleClass>
-                              <String fx:value="thin" />
-                              <String fx:value="large" />
-                           </styleClass>
-                        </Label>
-                        <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" text="1" GridPane.rowIndex="1">
-                           <styleClass>
-                              <String fx:value="thin" />
-                              <String fx:value="large" />
-                           </styleClass>
-                        </Label>
-                        <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" text="2" GridPane.rowIndex="2">
-                           <styleClass>
-                              <String fx:value="thin" />
-                              <String fx:value="large" />
-                           </styleClass>
-                        </Label>
-                        <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" text="3" GridPane.rowIndex="3">
-                           <styleClass>
-                              <String fx:value="thin" />
-                              <String fx:value="large" />
-                           </styleClass>
-                        </Label>
-                        <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" text="4" GridPane.rowIndex="4">
-                           <styleClass>
-                              <String fx:value="thin" />
-                              <String fx:value="large" />
-                           </styleClass>
-                        </Label>
-                        <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" text="5" GridPane.rowIndex="5">
-                           <styleClass>
-                              <String fx:value="thin" />
-                              <String fx:value="large" />
-                           </styleClass>
-                        </Label>
-                        <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" text="6" GridPane.rowIndex="6">
-                           <styleClass>
-                              <String fx:value="thin" />
-                              <String fx:value="large" />
-                           </styleClass>
-                        </Label>
-                        <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" text="7" GridPane.rowIndex="7">
-                           <styleClass>
-                              <String fx:value="thin" />
-                              <String fx:value="large" />
-                           </styleClass>
-                        </Label>
-                        <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" text="A" GridPane.columnIndex="1" GridPane.rowIndex="8">
-                           <styleClass>
-                              <String fx:value="thin" />
-                              <String fx:value="large" />
-                           </styleClass>
-                        </Label>
-                        <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" text="B" GridPane.columnIndex="2" GridPane.rowIndex="8">
-                           <styleClass>
-                              <String fx:value="thin" />
-                              <String fx:value="large" />
-                           </styleClass>
-                        </Label>
-                        <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" text="C" GridPane.columnIndex="3" GridPane.rowIndex="8">
-                           <styleClass>
-                              <String fx:value="thin" />
-                              <String fx:value="large" />
-                           </styleClass>
-                        </Label>
-                        <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" text="D" GridPane.columnIndex="4" GridPane.rowIndex="8">
-                           <styleClass>
-                              <String fx:value="thin" />
-                              <String fx:value="large" />
-                           </styleClass>
-                        </Label>
-                        <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" text="E" GridPane.columnIndex="5" GridPane.rowIndex="8">
-                           <styleClass>
-                              <String fx:value="thin" />
-                              <String fx:value="large" />
-                           </styleClass>
-                        </Label>
-                        <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" text="F" GridPane.columnIndex="6" GridPane.rowIndex="8">
-                           <styleClass>
-                              <String fx:value="thin" />
-                              <String fx:value="large" />
-                           </styleClass>
-                        </Label>
-                        <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" text="G" GridPane.columnIndex="7" GridPane.rowIndex="8">
-                           <styleClass>
-                              <String fx:value="thin" />
-                              <String fx:value="large" />
-                           </styleClass>
-                        </Label>
-                     </children>
-                     <cursor>
-                        <Cursor fx:constant="MOVE" />
-                     </cursor>
-                  </GridPane>
+									<ChessGrid />
             </items>
                <contextMenu>
                   <ContextMenu>

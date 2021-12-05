@@ -63,6 +63,22 @@
 		-fx-cursor: hand;
 }
 
+.dark-button:hover {
+		-fx-background-color: white;
+		-fx-text-fill: black;
+}
+
+.dark-button:focused {
+		-fx-background-color: #ffcc00;
+}
+
+.menu {
+		-fx-cursor: hand;
+}
+
+.menu-item {
+		-fx-cursor: hand;
+}
 
 #modal {
 		-fx-background-color: black;
@@ -70,5 +86,12 @@
 }
 
 
+#playerOneVBox:disabled {
+		-fx-background-color: gray;
+}
+
+#playerTwoVBox:disabled {
+		-fx-background-color: gray;
+}
 
 
