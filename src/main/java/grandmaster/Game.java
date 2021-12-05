@@ -29,7 +29,7 @@ public class Game {
       //players
 			 plist[0] = new Player("W");
 			 plist[1] = new Player("B");
-			 
+
 			 this.gameboard = new Board();
        //wipe board
        gameboard.reset();
@@ -58,7 +58,7 @@ public class Game {
     {
       for(int x = 0; x < gameboard.blocks.length; x++)
       {
-        if(gameboard.blocks[x][y].piece == null)
+        if(gameboard.blocks[x][y].piece instanceof Empty)
         {
           visu = visu.concat("X");
         } else
@@ -88,7 +88,7 @@ public class Game {
         } else {
 						System.out.println("oh noes");
 				}
-			
+
       }
       visu = visu.concat("\n");
     }
@@ -140,7 +140,7 @@ public class Game {
     private boolean turner(Turn turned, Player player)
     {
       //if someone's trying to move something that isn't even a piece
-       if (turned.piece == null)
+       if (turned.piece instanceof Empty)
        {
            return false;
        }
@@ -174,7 +174,7 @@ public class Game {
 
        // kill!
        Piece victim = turned.to.piece;
-       if (victim != null)
+       if (victim != instanceof Empty)
        {
            killed.add(victim);
            turned.to.clearPiece();
