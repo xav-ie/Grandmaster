@@ -126,7 +126,7 @@ public class Game {
               black_check_flag = true;
               return(true);
             }
-              if(in_turn_player.color.equals("W))
+              if(in_turn_player.color.equals("W"))
             {
               white_check_flag = true;
               return(true);
