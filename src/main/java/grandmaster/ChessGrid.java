@@ -30,7 +30,7 @@ public class ChessGrid extends GridPane {
 	private StackPane[][] gridPaneArray = null;
 	@FXML
 	public EventHandler<MouseEvent> onMouseMoveHandler=new EventHandler<>(){public void handle(MouseEvent event){System.out.println("Hello World");}};
-		Pair<Integer, Integer> currentActivePane = null;
+		///		Pair<Integer, Integer> currentActivePane = null;
 
 	public ChessGrid() {
 		super();
@@ -45,50 +45,50 @@ public class ChessGrid extends GridPane {
 		// events directly to it rather than having many event handlers
 	}
 
-	private void changeActivePane(int i, int j) 
-	{
-			if (this.currentActivePane == null || !(this.currentActivePane[0] == i && this.currentActivePane[1] == j)) {
-				this.currentActivePane = new Pair<Integer, Integer>(i,j);
-				System.out.println(this.chessGridPane[i][j].getChildren());
+	// private void changeActivePane(int i, int j) 
+	// {
+	// 		if (this.currentActivePane == null || !(this.currentActivePane[0] == i && this.currentActivePane[1] == j)) {
+	// 			this.currentActivePane = new Pair<Integer, Integer>(i,j);
+	// 			System.out.println(this.chessGridPane[i][j].getChildren());
 
-			}
-	}
+	// 		}
+	// }
 
 	private void addPaneEvents(int i, int j, StackPane sp) {
-		sp.setOnMouseMoved(new EventHandler<>() {
-			public void handle(MouseEvent event) {
-				System.out.println("Hello from node " + Integer.toString(i) + "," + Integer.toString(j));
-			}
-		});
+		// sp.setOnMouseMoved(new EventHandler<>() {
+		// 	public void handle(MouseEvent event) {
+		// 		System.out.println("Hello from node " + Integer.toString(i) + "," + Integer.toString(j));
+		// 	}
+		// });
 
-		sp.setOnDragDetected(new EventHandler<MouseEvent>() {
-			public void handle(MouseEvent event) {
-				/* drag was detected, start a drag-and-drop gesture */
-				/* allow any transfer mode */
-				Dragboard db = source.startDragAndDrop(TransferMode.ANY);
-				/* Put a string on a dragboard */
-				ClipboardContent content = new ClipboardContent();
-				content.putString(Integer.toString(i) + "," + Integer.toString(j));
-				db.setContent(content);
-				event.consume();
-			}
-		});
+		// sp.setOnDragDetected(new EventHandler<MouseEvent>() {
+		// 	public void handle(MouseEvent event) {
+		// 		/* drag was detected, start a drag-and-drop gesture */
+		// 		/* allow any transfer mode */
+		// 		Dragboard db = source.startDragAndDrop(TransferMode.ANY);
+		// 		/* Put a string on a dragboard */
+		// 		ClipboardContent content = new ClipboardContent();
+		// 		content.putString(Integer.toString(i) + "," + Integer.toString(j));
+		// 		db.setContent(content);
+		// 		event.consume();
+		// 	}
+		// });
 
-		sp.setOnDragOver(new EventHandler<DragEvent>() {
-			public void handle(DragEvent event) {
-				/* data is dragged over the target */
-				/* accept it only if it is not dragged from the same node 
-				 * and if it has a string data */
-				if (event.getGestureSource() != target && event.getDragboard().hasString()) {
-					/* allow for both copying and moving, whatever user chooses */
-					System.out.println("I want to accept this drag");
-					event.acceptTransferModes(TransferMode.COPY_OR_MOVE);
+		// sp.setOnDragOver(new EventHandler<DragEvent>() {
+		// 	public void handle(DragEvent event) {
+		// 		/* data is dragged over the target */
+		// 		/* accept it only if it is not dragged from the same node 
+		// 		 * and if it has a string data */
+		// 		if (event.getGestureSource() != target && event.getDragboard().hasString()) {
+		// 			/* allow for both copying and moving, whatever user chooses */
+		// 			System.out.println("I want to accept this drag");
+		// 			event.acceptTransferModes(TransferMode.COPY_OR_MOVE);
 
-				}
+		// 		}
 
-				event.consume();
-			}
-		});
+		// 		event.consume();
+		// 	}
+		// });
 
 	}
 
