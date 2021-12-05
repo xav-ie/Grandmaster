@@ -6,6 +6,7 @@ import javafx.scene.layout.GridPane;
 import java.net.URL;
 import javafx.scene.control.Label;
 import grandmaster.ChessGridLabel;
+import javafx.scene.transform.Translate;
 
 public class ChessGrid extends GridPane {
 	private @FXML GridPane chessGridPane;
@@ -34,6 +35,9 @@ public class ChessGrid extends GridPane {
 		chessGridPane.add(new ChessGridLabel("E"), 5, 8);
 		chessGridPane.add(new ChessGridLabel("F"), 6, 8);
 		chessGridPane.add(new ChessGridLabel("G"), 7, 8);
+		chessGridPane.add(new ChessGridPiece("p"), 1, 1);
+
+		
 	}
 
 	public void render() {

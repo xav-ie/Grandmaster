@@ -32,11 +32,21 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Circle?>
 
 <VBox prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
-  <children>
-      <Circle fill="DODGERBLUE" radius="66.0" stroke="BLACK" strokeType="INSIDE" />
-  </children>
+   <children>
+      <Label  alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0">
+         <graphic>
+            <ImageView fitHeight="50.0" fitWidth="0.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@crown.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Label>
+   </children>
 </VBox>
