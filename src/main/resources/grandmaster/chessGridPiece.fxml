@@ -4,15 +4,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 
-<fx:root type="javafx.scene.control.Label" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" text="1">
-  <graphic>
-    <ImageView fitHeight="50.0" fitWidth="0.0" pickOnBounds="true" preserveRatio="true">
-      <image>
-        <Image url="@crown.png" />
-      </image>
-    </ImageView>
-  </graphic>
+<fx:root type="javafx.scene.control.Label" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" text="1" >
+   <styleClass>
+		 <String fx:value="chessFont"/>
+   </styleClass>
 </fx:root>

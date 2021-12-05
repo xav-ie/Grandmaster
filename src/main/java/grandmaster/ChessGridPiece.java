@@ -12,27 +12,46 @@ import javafx.scene.image.ImageView;
 
 public class ChessGridPiece extends Label {
 	public String labelString;
-	private @FXML ImageView pieceImage;
 
 	public ChessGridPiece(@NamedArg("text") String text)
 		{
 				super();
 				this.labelString = text;
-				this.loadFxml(ChessGrid.class.getResource("chessGridLabel.fxml"), this);		
+				this.loadFxml(ChessGrid.class.getResource("chessGridPiece.fxml"), this);		
 		}
 
 	public void render() {
-			// pieceImage.setImage(new Image(this.codeToImage(this.labelString)));
 			this.setText(this.codeToImage(this.labelString));
-			
 	}
 
 	public String codeToImage(String chessStringCode) {
 		switch (chessStringCode) {
-			case "wp1":
-				return "\u2654";
+			case "wr":
+				return "♖";
+			case "wn":
+				return "♘";
+			case "wk":
+				return "♔";
+			case "wq":
+				return "♕";
+			case "wb":
+				return "♗";
+			case "wp":
+				return "♙";
+			case "br":
+				return "♜";
+			case "bn":
+				return "♞";
+			case "bk":
+				return "♚";
+			case "bq":
+				return "♛";
+			case "bb":
+				return "♝";
+			case "bp":
+				return "♟";
 			default:
-				return "\u2654";
+				return "?";
 		}
 	}
 

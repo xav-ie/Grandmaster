@@ -1,26 +1,26 @@
-/* @font-face { */
-/*     font-family: 'Roboto'; */
-/* 		font-weight: 400; */
-/*     src: url('Roboto-Regular.ttf'); */
-/* } */
+@font-face { 
+    font-family: 'Roboto'; 
+		font-weight: 400; 
+    src: url('Roboto-Regular.ttf'); 
+} 
 
-/* @font-face { */
-/*     font-family: 'Roboto'; */
-/* 		font-weight: 100; */
-/*     src: url('Roboto-Thin.ttf'); */
-/* } */
+@font-face { 
+    font-family: 'Roboto'; 
+		font-weight: 100; 
+    src: url('Roboto-Thin.ttf'); 
+} 
 
-/* @font-face { */
-/*     font-family: 'Roboto'; */
-/* 		font-weight: 300; */
-/*     src: url('Roboto-Light.ttf'); */
-/* } */
+@font-face { 
+    font-family: 'Roboto'; 
+		font-weight: 300; 
+    src: url('Roboto-Light.ttf'); 
+} 
 
-/* @font-face { */
-/*     font-family: 'Roboto'; */
-/* 		font-weight: 700; */
-/*     src: url('Roboto-Bold.ttf'); */
-/* } */
+@font-face { 
+    font-family: 'Roboto'; 
+		font-weight: 700; 
+    src: url('Roboto-Bold.ttf'); 
+} 
 @font-face {
   font-family: 'Free Serif';
   src: url('FreeSerif.ttf');
@@ -29,7 +29,6 @@
 .root {
     /* -fx-background-image: url("crown.png");*/
 		-fx-background-color: rgba(255,150,255,1);
-		-fx-font-family: 'Free Serif';
 }
 
 .small {
@@ -44,24 +43,25 @@
 		-fx-font-size: 32px;
 }
 
-/* .normal { */
-/* 		-fx-font-family: "Roboto Normal"; */
-/* } */
+.normal { 
+		-fx-font-family: "Roboto Normal"; 
+} 
 
-/* .thin { */
-/* 		-fx-font-family: "Roboto Thin"; */
-/* } */
+.thin { 
+		-fx-font-family: "Roboto Thin"; 
+} 
 
-/* .light { */
-/* 		-fx-font-family: "Roboto Light"; */
-/* } */
+.light { 
+		-fx-font-family: "Roboto Light"; 
+} 
 
-/* .bold { */
-/* 		-fx-font-family: "Roboto Bold"; */
-/* } */
+.bold { 
+		-fx-font-family: "Roboto Bold"; 
+} 
 
-.ariall {
+.chessFont {
 		-fx-font-family: 'Free Serif';
+		-fx-font-size: 40px;
 }
 
 .dark-button {
