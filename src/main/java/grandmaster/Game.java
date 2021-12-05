@@ -174,7 +174,7 @@ public class Game {
 
        // kill!
        Piece victim = turned.to.piece;
-       if (!victim instanceof Empty)
+       if (!(victim instanceof Empty))
        {
            killed.add(victim);
            turned.to.clearPiece();
