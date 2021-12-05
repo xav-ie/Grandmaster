@@ -12,7 +12,7 @@ public class Board {
 	public void reset() {
 		// empty blocks
 		for (int i=0; i < 8; i++) {
-			for (int j=2; j < 6; j++) {
+			for (int j=0; j < 8; j++) {
 				blocks[i][j] = new Block(i, j, new Empty("o"));
 			}
 		}
