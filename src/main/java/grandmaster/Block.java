@@ -23,6 +23,6 @@ public class Block{
 	}
 	
 	public void clearPiece() {
-		this.piece = null;
+		this.piece = new Empty("o");
 	}
 }
