@@ -15,20 +15,37 @@ import javafx.scene.layout.VBox;
 import javafx.fxml.FXMLLoader;
 import javafx.event.Event;
 import javafx.fxml.FXML;
-
+import javafx.application.Platform;
+import javafx.scene.layout.BorderPane;
 
 public class HelloFX extends Application {
 	@FXML
-		public void quitApplication(Event e) 
-		{
-				System.out.println("please quit!");
-		}
-		
+	private BorderPane modal;
+
+	@FXML
+	public void quitApplication(Event e) {
+		Platform.exit();
+	}
+
+	@FXML
+	public void toggleAboutGrandmaster(Event e) {
+		modal.setVisible(!modal.isVisible());
+	}
+
+	@FXML
+	public void newGame(Event e) {
+		System.out.println("restart");
+	}
+
+	@FXML
+	public void openInBrowser(Event e) {
+		System.out.println(e);
+	}
 
 	private Parent createContent() {
 		try {
-			VBox vbox = FXMLLoader.<VBox>load(HelloFX.class.getResource("firstlayout.fxml"));
-			return vbox;
+			StackPane sp = FXMLLoader.<StackPane>load(HelloFX.class.getResource("firstlayout.fxml"));
+			return sp;
 		} catch (Exception e) {
 			VBox vbox = new VBox(8); // spacing = 8
 			String javaVersion = System.getProperty("java.version");
@@ -44,8 +61,7 @@ public class HelloFX extends Application {
 	public void start(Stage primaryStage) {
 		primaryStage.initStyle(StageStyle.TRANSPARENT);
 		primaryStage.setOpacity(1.0);
-		Scene scene = new Scene(createContent(), 640, 480, Color.BLUE);
-		scene.setCursor(Cursor.cursor("MOVE"));
+		Scene scene = new Scene(createContent(), 840, 580, Color.BLUE);
 		primaryStage.setTitle("Grandmaster");
 		primaryStage.setScene(scene);
 		scene.getStylesheets().add(HelloFX.class.getResource("Login.css").toExternalForm());
