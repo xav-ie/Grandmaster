@@ -3,7 +3,7 @@ package grandmaster;
 
 
 public class Board {
-	Block[][] blocks;
+		public Block[][] blocks = new Block[8][8];
 	
 	public Board() {
 		this.reset();

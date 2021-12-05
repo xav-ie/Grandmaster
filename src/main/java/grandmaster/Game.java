@@ -27,14 +27,18 @@ public class Game {
   public void init_Game()
    {
       //players
-      plist[0].color = "W";
-      plist[1].color = "B";
+			 plist[0] = new Player("W");
+			 plist[1] = new Player("B");
+			 
+			 this.gameboard = new Board();
        //wipe board
        gameboard.reset();
        //white moves first
 
        this.in_turn_player = plist[0];
        //wipe all moves on init
+			 this.turn_list = new ArrayList<Turn>();
+
        turn_list.clear();
    }
 
@@ -54,34 +58,37 @@ public class Game {
     {
       for(int x = 0; x < gameboard.blocks.length; x++)
       {
-        if(gameboard.blocks[x][y].piece instanceof King)
-        {
-          visu = visu.concat("K");
-        }
-        if(gameboard.blocks[x][y].piece instanceof Queen)
-        {
-          visu = visu.concat("Q");
-        }
-        if(gameboard.blocks[x][y].piece instanceof Knight)
-        {
-          visu = visu.concat("k");
-        }
-        if(gameboard.blocks[x][y].piece instanceof Rook)
-        {
-          visu = visu.concat("C");
-        }
-        if(gameboard.blocks[x][y].piece instanceof Pawn)
-        {
-          visu = visu.concat("P");
-        }
-        if(gameboard.blocks[x][y].piece instanceof Bishop)
-        {
-          visu = visu.concat("B");
-        }
         if(gameboard.blocks[x][y].piece == null)
         {
           visu = visu.concat("X");
-        }
+        } else
+        if(gameboard.blocks[x][y].piece instanceof King)
+        {
+          visu = visu.concat("K");
+        } else
+        if(gameboard.blocks[x][y].piece instanceof Queen)
+        {
+          visu = visu.concat("Q");
+        } else
+        if(gameboard.blocks[x][y].piece instanceof Knight)
+        {
+          visu = visu.concat("k");
+        } else
+        if(gameboard.blocks[x][y].piece instanceof Rook)
+        {
+          visu = visu.concat("C");
+        } else
+        if(gameboard.blocks[x][y].piece instanceof Pawn)
+        {
+          visu = visu.concat("P");
+        } else
+        if(gameboard.blocks[x][y].piece instanceof Bishop)
+        {
+          visu = visu.concat("B");
+        } else {
+						System.out.println("oh noes");
+				}
+			
       }
       visu = visu.concat("\n");
     }
