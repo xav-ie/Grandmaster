@@ -19,8 +19,8 @@ public class Board {
 
 		// set pawns
 		for (int i=0; i < 8; i ++) {
-			blocks[i][1] = new Block(i, 1, new Pawn("W"));
-			blocks[i][6] = new Block(i, 6, new Pawn("B"));
+			blocks[1][i] = new Block(i, 1, new Pawn("W"));
+			blocks[6][i] = new Block(i, 6, new Pawn("B"));
 		}
 
 		// set rooks
