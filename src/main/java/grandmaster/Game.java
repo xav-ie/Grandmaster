@@ -41,6 +41,7 @@ public class Game {
        this.in_turn_player = plist[0];
        //wipe all moves on init
 			 this.turn_list = new ArrayList<Turn>();
+       this.killed = new ArrayList<Piece>();
 
        turn_list.clear();
 
@@ -135,8 +136,10 @@ public class Game {
         {
           if(gb.blocks[x][y].piece.movePossible(gb.blocks[x][y],gb.blocks[kingx][kingy],gb))
           {
+            //System.out.println(gb.blocks[x][y].piece);
             if(in_turn_player.color.equals("B"))
             {
+
               black_check_flag = true;
               return(true);
             }
@@ -147,6 +150,14 @@ public class Game {
             }
           }
         }
+      }
+      if(in_turn_player.color.equals("B"))
+      {
+        black_check_flag = false;
+      }
+        if(in_turn_player.color.equals("W"))
+      {
+        white_check_flag = false;
       }
      // System.out.println(this.vis());
       return(false);
@@ -191,8 +202,10 @@ public class Game {
        //System.out.println("passed empty");
 
        //are you getting yourself into check ?
+       //set up a hypothetical board to check
        Board hypothetical = new Board(gameboard);
        hypothetical.blocks[turned.to.x][turned.to.y].setPiece(turned.from.piece);
+       hypothetical.blocks[turned.from.x][turned.from.y].clearPiece(); //may break stuff
        if(checkifcheck(hypothetical)==true)
        {
          return false;

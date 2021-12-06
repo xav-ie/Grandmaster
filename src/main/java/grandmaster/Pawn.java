@@ -31,7 +31,7 @@ public class Pawn extends Piece {
 		//System.out.println("passed empty");
 		// pawn move black case
 		if (from.piece.color.equals("B")) {
-			if (from.x == to.x -1 && from.y== to.y) {
+			if (from.x == to.x + 1 && from.y== to.y) {
 				return true;
 			}
 			if (from.x == 6 && to.x == 4 && from.y == to.y)
