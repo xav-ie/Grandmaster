@@ -9,6 +9,14 @@ public class Board {
 		this.reset();
 	}
 
+	public Board(Board ci){
+		for (int i=0; i < 8; i++) {
+			for (int j=0; j < 8; j++) {
+				blocks[i][j] = new Block(i, j, ci.blocks[i][j].piece);
+			}
+		}
+	}
+
 	public void reset() {
 		// empty blocks
 		for (int i=0; i < 8; i++) {
@@ -19,8 +27,8 @@ public class Board {
 
 		// set pawns
 		for (int i=0; i < 8; i ++) {
-			blocks[1][i] = new Block(i, 1, new Pawn("W"));
-			blocks[6][i] = new Block(i, 6, new Pawn("B"));
+			blocks[1][i] = new Block(1, i, new Pawn("W"));
+			blocks[6][i] = new Block(6, i, new Pawn("B"));
 		}
 
 		// set rooks

@@ -17,19 +17,21 @@ public class Pawn extends Piece {
 		if (from.equals(to)) {
 			return false;
 		}
-	
+		//System.out.println("passed empty");
 		
 
 		// check if landing block is same color
 		if(!(to.piece instanceof Empty)) {
 			if (to.piece.color.equals(from.piece.color)) {
+				//System.out.println(to.piece.color);
 				return false;
 			}
 		}
-		
+
+		//System.out.println("passed empty");
 		// pawn move black case
 		if (from.piece.color.equals("B")) {
-			if (from.x == to.x && from.y - 1 == to.y) {
+			if (from.x == to.x -1 && from.y== to.y) {
 				return true;
 			}
 			if (from.x == 6 && to.x == 4 && from.y == to.y)
@@ -39,31 +41,36 @@ public class Pawn extends Piece {
 			// pawn take. bad pawn!
 			if(!(to.piece instanceof Empty)) {
 				if (!to.piece.color.equals(from.piece.color)) {
-					if (Math.abs(to.x - from.x) == 1 && from.y - 1 == to.y) {
+					if (Math.abs(to.y - from.y) == 1 && from.x - 1 == to.x) {
 						return true;
 					}
 				}
 			}
 		}
-		
+		//System.out.println("passed empty");
 		if(from.piece.color.equals("W")) {
-			if (from.x == to.x && from.y - 1 == to.y) {
+			// System.out.println("is white");
+			// System.out.println(from.x);
+			// System.out.println(from.y);
+			// System.out.println(to.x);
+			// System.out.println(to.y);
+			if ((from.x == to.x - 1) && (from.y == to.y)) {
 				return true;
 			}
-			if (from.x == 1 && to.x == 3 && from.y == to.y)
+			if ((from.x == 1 && to.x == 3) && (from.y == to.y))
 			{
 				return true;
 			}
 			// pawn take. bad pawn!
 			if(!(to.piece instanceof Empty)) {
 				if (!to.piece.color.equals(from.piece.color)) {
-					if (Math.abs(to.x - from.x) == 1 && from.y + 1 == to.y) {
+					if ((Math.abs(to.y - from.y) == 1) && (from.x + 1 == to.x)) {
 						return true;
 					}
 				}
 			}
 		}
-		
+		//System.out.println("passed empty");
 		// TODO:
 		// check if a piece was jumped
 		

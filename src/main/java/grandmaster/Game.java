@@ -23,7 +23,6 @@ public class Game {
   //any move check if puts king in check
   //from .piece = null
 
-
   public void init_Game()
    {
       //players
@@ -45,9 +44,10 @@ public class Game {
   //move helper
    public boolean playerMove(Player player, int x, int y, int xprime, int yprime)
    {
+
       Block startblock = gameboard.blocks[x][y];
       Block endblock = gameboard.blocks[xprime][yprime];
-      Turn curturn = new Turn(startblock, endblock,player);
+      Turn curturn = new Turn(startblock, endblock, player);
       return this.turner(curturn, player);
     }
 
@@ -97,14 +97,14 @@ public class Game {
 
     public boolean checkifcheck(Board gb)
     {
-
+      //System.out.println(this.vis());
       int kingx = -100;
       int kingy = -100;
       for(int y = 0; y < gb.blocks[0].length; y++)
       {
         for(int x = 0; x < gb.blocks.length; x++)
         {
-          if(gb.blocks[x][y].piece.color == in_turn_player.color)
+          if(gb.blocks[x][y].piece.color.equals(in_turn_player.color))
           {
             if(gb.blocks[x][y].piece instanceof King)
             {
@@ -121,12 +121,12 @@ public class Game {
         {
           if(gb.blocks[x][y].piece.movePossible(gb.blocks[x][y],gb.blocks[kingx][kingy],gb))
           {
-            if(in_turn_player.color == "B")
+            if(in_turn_player.color.equals("B"))
             {
               black_check_flag = true;
               return(true);
             }
-              if(in_turn_player.color == "W")
+              if(in_turn_player.color.equals("W"))
             {
               white_check_flag = true;
               return(true);
@@ -134,16 +134,22 @@ public class Game {
           }
         }
       }
+     // System.out.println(this.vis());
       return(false);
     }
     //move checks and confirmation
     private boolean turner(Turn turned, Player player)
     {
+      // System.out.println(turned.from.x);
+      // System.out.println(turned.from.y);
+      // System.out.println(turned.to.x);
+      // System.out.println(turned.to.y);
       //if someone's trying to move something that isn't even a piece
        if (turned.piece instanceof Empty)
        {
            return false;
        }
+       //System.out.println("passed empty");
 
        // valid player?
        if (player != in_turn_player)
@@ -151,11 +157,15 @@ public class Game {
            return false;
        }
 
+       //System.out.println("passed empty");
+
        //if the player thinks they can play the other side
        if (turned.piece.color != player.color)
        {
            return false;
        }
+
+       //System.out.println("passed empty");
 
 
        // is this move even possible
@@ -164,16 +174,21 @@ public class Game {
            return false;
        }
 
+       //System.out.println("passed empty");
+
        //are you getting yourself into check ?
-       hypothetical = gameboard;
+       Board hypothetical = new Board(gameboard);
        hypothetical.blocks[turned.to.x][turned.to.y].setPiece(turned.from.piece);
        if(checkifcheck(hypothetical)==true)
        {
          return false;
        }
 
+       //System.out.println("passed empty");
+
        // kill!
        Piece victim = turned.to.piece;
+       //System.out.println(turned.to.color);
        if (!(victim instanceof Empty))
        {
            killed.add(victim);
@@ -181,16 +196,18 @@ public class Game {
            //if a king was just taken, game over
            if(victim instanceof King)
            {
-             if(in_turn_player.color == "W")
+             if(in_turn_player.color.equals("W"))
              {
                white_victory = true;
              }
-             if(in_turn_player.color == "B")
+             if(in_turn_player.color.equals("B"))
              {
                black_victory = true;
              }
            }
        }
+
+       //System.out.println("passed empty");
 
        //castling..........
 
