@@ -73,6 +73,12 @@
                               <String fx:value="medium" />
                            </styleClass>
                         </MenuItem>
+                        <MenuItem onAction="#renderBoard" text="_RenderBoard"> 
+                           <styleClass> 
+                              <String fx:value="normal" /> 
+                              <String fx:value="medium" />
+                           </styleClass> 
+                        </MenuItem> 
                         <MenuItem onAction="#toggleAboutGrandmaster" text="_About Grandmaster">
                            <styleClass>
                               <String fx:value="normal" />
@@ -110,7 +116,7 @@
 											 <!-- <fx:include fx:id="playerOneVBox" source="playerStats.fxml" /> -->
                      </children>
                   </VBox>
-									<ChessGrid />
+									<ChessGrid fx:id="myGrid"/>
             </items>
                <contextMenu>
                   <ContextMenu>

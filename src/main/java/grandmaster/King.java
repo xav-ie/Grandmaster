@@ -36,4 +36,9 @@ public class King extends Piece {
 		return false;
 	}
 
+		public String toString() 
+		{
+				return this.color + "k";
+
+		}
 }

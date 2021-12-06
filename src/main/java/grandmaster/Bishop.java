@@ -45,4 +45,9 @@ public class Bishop extends Piece {
 		return true;
 	}
 	
+		public String toString() 
+		{
+				return this.color + "b";
+
+		}
 }

@@ -25,4 +25,12 @@ public class Block{
 	public void clearPiece() {
 		this.piece = new Empty("o");
 	}
+
+		
+		public String toString() 
+		{
+				return this.piece.toString();
+
+		}
+	
 }

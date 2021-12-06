@@ -39,4 +39,12 @@ public class Rook extends Piece {
 
 		return false;
 	}
+
+
+		public String toString() 
+		{
+				return this.color + "r";
+
+		}
+	
 }

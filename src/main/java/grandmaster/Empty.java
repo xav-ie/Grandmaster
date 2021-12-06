@@ -15,4 +15,9 @@ public class Empty extends Piece {
 		return false;
 	}
 
+		public String toString() 
+		{
+				return "";
+
+		}
 }

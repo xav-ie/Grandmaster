@@ -27,4 +27,9 @@ public class Knight extends Piece {
 
 	}
 
+		public String toString() 
+		{
+				return this.color + "n";
+
+		}
 }

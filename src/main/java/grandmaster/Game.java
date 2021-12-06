@@ -15,6 +15,8 @@ public class Game {
   public boolean black_check_flag = false;
   public boolean white_victory = false;
   public boolean black_victory = false;
+		public int currentX;
+		public int currentY;
   //check
   //for pieces enemy, movepossible, from piece, to king
   //if check,
@@ -29,6 +31,8 @@ public class Game {
 			 plist[0] = new Player("W");
 			 plist[1] = new Player("B");
 
+			 this.currentX = -1;
+			 this.currentY = -1;
 			 this.gameboard = new Board();
        //wipe board
        gameboard.reset();
@@ -39,7 +43,15 @@ public class Game {
 			 this.turn_list = new ArrayList<Turn>();
 
        turn_list.clear();
+
    }
+
+		public void setCurrentPieceCoords(int x, int y)
+		{
+				this.currentX = x;
+				this.currentY = y;
+		}
+	
 
   //move helper
    public boolean playerMove(Player player, int x, int y, int xprime, int yprime)

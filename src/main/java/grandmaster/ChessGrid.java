@@ -23,14 +23,18 @@ import javafx.scene.input.MouseEvent;
 import javafx.event.EventHandler;
 import org.javatuples.Pair;
 import java.util.*;
-		
 
 public class ChessGrid extends GridPane {
 	private @FXML GridPane chessGridPane;
 	private StackPane[][] gridPaneArray = null;
 	@FXML
-	public EventHandler<MouseEvent> onMouseMoveHandler=new EventHandler<>(){public void handle(MouseEvent event){System.out.println("Hello World");}};
-		///		Pair<Integer, Integer> currentActivePane = null;
+	public EventHandler<MouseEvent> onMouseMoveHandler = new EventHandler<>() {
+		public void handle(MouseEvent event) {
+			System.out.println("Hello World");
+		}
+	};
+	/// Pair<Integer, Integer> currentActivePane = null;
+	public Game ourGame;
 
 	public ChessGrid() {
 		super();
@@ -38,57 +42,81 @@ public class ChessGrid extends GridPane {
 	}
 
 	public void addChessPiece(String pieceText, Integer coordX, Integer coordY) {
+		this.gridPaneArray[coordX][coordY].getChildren().clear();
 		this.gridPaneArray[coordX][coordY].getChildren().add(new ChessGridPiece(pieceText));
-
-		//chessGridPane.add(new ChessGridPiece(pieceText), coordX, coordY);
-		// todo: add event listener of some sort or create piece with some class and emit
-		// events directly to it rather than having many event handlers
 	}
 
-	// private void changeActivePane(int i, int j) 
-	// {
-	// 		if (this.currentActivePane == null || !(this.currentActivePane[0] == i && this.currentActivePane[1] == j)) {
-	// 			this.currentActivePane = new Pair<Integer, Integer>(i,j);
-	// 			System.out.println(this.chessGridPane[i][j].getChildren());
-
-	// 		}
-	// }
-
 	private void addPaneEvents(int i, int j, StackPane sp) {
-		// sp.setOnMouseMoved(new EventHandler<>() {
-		// 	public void handle(MouseEvent event) {
-		// 		System.out.println("Hello from node " + Integer.toString(i) + "," + Integer.toString(j));
-		// 	}
-		// });
+		sp.setOnMouseClicked(new EventHandler<>() {
+			public void handle(MouseEvent event) {
+				System.out.println("Hello from node " + Integer.toString(i) + "," + Integer.toString(j));
+				//Block myPiece = ourGame.gameboard.blocks[7 - j][i - 1];
+				// if we do not have an active piece
+				if (ourGame.currentX == -1) {
+					// before changing blue, verify it is selectable
+					// 1. piece
+					// 2. your turn and your piece
+					List<Node> panelElems = (List<Node>) sp.getChildren();
+					if (panelElems.size() != 0) {
+						Node currentElement = panelElems.get(0);
+						String curPlayer = ourGame.in_turn_player.toString();
+						if ((currentElement instanceof ChessGridPiece) &&
+						// if its your current turn and your piece ...
+						(curPlayer.equals(((ChessGridPiece) currentElement).color))) {
+							sp.setBackground(new Background(new BackgroundFill(Color.YELLOW, null, null)));
+							// this is now our current active piece!
+							ourGame.setCurrentPieceCoords(i, j); // may have to fix later
+						}
+					}
+				} else {
+					// you have an active piece!
+					List<Node> panelElems = (List<Node>) sp.getChildren();
+					if (panelElems.size() != 0) {
+						Node currentElement = panelElems.get(0);
+						String curPlayer = ourGame.in_turn_player.toString();
+						if (currentElement instanceof ChessGridPiece) {
+							// if its your current turn and your piece ...
+							if (curPlayer.equals(((ChessGridPiece) currentElement).color)) {
+								// change current active piece again
+								sp.setBackground(new Background(new BackgroundFill(Color.YELLOW, null, null)));
+								// deactivate the old piece
+								Color c = Color.WHITE;
+								if ((ourGame.currentX + ourGame.currentY) % 2 == 0)
+									c = Color.LIGHTGRAY;
+								gridPaneArray[ourGame.currentX][ourGame.currentY]
+										.setBackground(new Background(new BackgroundFill(c, null, null)));
 
-		// sp.setOnDragDetected(new EventHandler<MouseEvent>() {
-		// 	public void handle(MouseEvent event) {
-		// 		/* drag was detected, start a drag-and-drop gesture */
-		// 		/* allow any transfer mode */
-		// 		Dragboard db = source.startDragAndDrop(TransferMode.ANY);
-		// 		/* Put a string on a dragboard */
-		// 		ClipboardContent content = new ClipboardContent();
-		// 		content.putString(Integer.toString(i) + "," + Integer.toString(j));
-		// 		db.setContent(content);
-		// 		event.consume();
-		// 	}
-		// });
+								// this is now our current active piece!
+								ourGame.setCurrentPieceCoords(i, j); // may have to fix later
+							} else {
+								// not our piece, send a command
+								System.out.println("send command to move");
+								if(ourGame.playerMove(ourGame.in_turn_player, 7 - ourGame.currentY,  ourGame.currentX - 1, 7 - j, i - 1)) {
+										System.out.println("moved");
+										
+								} else {
+										System.out.println("womp");
+								}
+								
 
-		// sp.setOnDragOver(new EventHandler<DragEvent>() {
-		// 	public void handle(DragEvent event) {
-		// 		/* data is dragged over the target */
-		// 		/* accept it only if it is not dragged from the same node 
-		// 		 * and if it has a string data */
-		// 		if (event.getGestureSource() != target && event.getDragboard().hasString()) {
-		// 			/* allow for both copying and moving, whatever user chooses */
-		// 			System.out.println("I want to accept this drag");
-		// 			event.acceptTransferModes(TransferMode.COPY_OR_MOVE);
+							}
+						}
+					} else {
+						// send a command to move the piece to this empty spot
+						System.out.println("send command to move");
+								if(ourGame.playerMove(ourGame.in_turn_player, 7 - ourGame.currentY,  ourGame.currentX - 1, 7 - j, i - 1)) {
+										System.out.println("moved");
+										
+								} else {
+										System.out.println("womp");
+								}
+					}
+					render();
 
-		// 		}
+				}
 
-		// 		event.consume();
-		// 	}
-		// });
+			}
+		});
 
 	}
 
@@ -137,31 +165,27 @@ public class ChessGrid extends GridPane {
 		this.gridPaneArray[6][8].getChildren().add(new ChessGridLabel("F"));
 		this.gridPaneArray[7][8].getChildren().add(new ChessGridLabel("G"));
 		this.gridPaneArray[8][8].getChildren().add(new ChessGridLabel("H"));
-		this.addChessPiece("br", 1, 0);
-		this.addChessPiece("bn", 2, 0);
-		this.addChessPiece("bb", 3, 0);
-		this.addChessPiece("bq", 4, 0);
-		this.addChessPiece("bk", 5, 0);
-		this.addChessPiece("bb", 6, 0);
-		this.addChessPiece("bn", 7, 0);
-		this.addChessPiece("br", 8, 0);
-		this.addChessPiece("wr", 1, 7);
-		this.addChessPiece("wn", 2, 7);
-		this.addChessPiece("wb", 3, 7);
-		this.addChessPiece("wq", 4, 7);
-		this.addChessPiece("wk", 5, 7);
-		this.addChessPiece("wb", 6, 7);
-		this.addChessPiece("wn", 7, 7);
-		this.addChessPiece("wr", 8, 7);
-		for (int i = 0; i < 8; i++) {
-			this.addChessPiece("bp", i + 1, 1);
-			this.addChessPiece("wp", i + 1, 6);
-		}
 	}
 
-	public void render() {
-		// re-load and show the chess pieces here
+	public void setOurGame(Game ourGame) {
+			this.ourGame = ourGame;
+	}
 
+	@FXML
+	public void render() {
+		for (int i = 0; i < 8; i++) {
+			for (int j = 0; j < 8; j++) {
+				Block myPiece = ourGame.gameboard.blocks[7 - i][j];
+				System.out.print(myPiece);
+				if (myPiece.toString() != "") {
+					this.addChessPiece(myPiece.toString().toLowerCase(), j + 1, i);
+				} else {
+					// clear space
+					this.gridPaneArray[j + 1][i].getChildren().clear();
+				}
+			}
+		}
+		System.out.println("rendered");
 	}
 
 	protected void loadFxml(URL fxmlFile, GridPane rootController) {
@@ -173,7 +197,6 @@ public class ChessGrid extends GridPane {
 			loader.load();
 			// now all the FXML bindings are active and accessible
 			this.setup();
-			this.render();
 
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -20,8 +20,13 @@ import javafx.application.Platform;
 import javafx.scene.layout.BorderPane;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Hyperlink;
+import javafx.scene.layout.GridPane;
 
 public class HelloFX extends Application {
+
+	public Game ourGame;
+
+		
 	@FXML
 	private VBox mainApp;
 	@FXML
@@ -30,6 +35,8 @@ public class HelloFX extends Application {
 	private VBox playerOneVBox;
 	@FXML
 	private VBox playerTwoVBox;
+	@FXML
+	private ChessGrid myGrid;
 
 	@FXML
 	public void quitApplication(Event e) {
@@ -48,7 +55,19 @@ public class HelloFX extends Application {
 	@FXML
 	public void newGame(Event e) {
 		System.out.println("restart");
+		this.ourGame = new Game();
+    ourGame.init_Game();
+    System.out.println(ourGame.vis());
+				 myGrid.setOurGame(ourGame);
 	}
+
+	@FXML
+	public void renderBoard(Event e)
+		{
+				myGrid.render();
+		}
+	
+	
 
 	@FXML
 	public void openInBrowser(ActionEvent e) {
@@ -58,7 +77,7 @@ public class HelloFX extends Application {
 
 	private Parent createContent() {
 		try {
-			StackPane sp = FXMLLoader.<StackPane>load(HelloFX.class.getResource("firstlayout.fxml"));
+				StackPane sp = new FXMLLoader(HelloFX.class.getResource("firstlayout.fxml")).load();
 			return sp;
 		} catch (Exception e) {
 			VBox vbox = new VBox(8); 
@@ -75,6 +94,7 @@ public class HelloFX extends Application {
 
 	@Override
 	public void start(Stage primaryStage) {
+		 
 		primaryStage.initStyle(StageStyle.TRANSPARENT);
 		primaryStage.setOpacity(1.0);
 		Scene scene = new Scene(createContent(), 840, 580, Color.BLUE);
