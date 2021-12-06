@@ -13,16 +13,6 @@
         <javafx.maven.plugin.version>0.0.6</javafx.maven.plugin.version>
     </properties>
   <name>grandmaster</name>
-  
-<repositories>
-    <repository>
-        <id>maven-central-repo</id>
-        <url>http://repo1.maven.org/maven2</url>
-        <snapshots>
-            <enabled>false</enabled>
-        </snapshots>
-    </repository>
-</repositories>
 
   <dependencies>
     <dependency>
@@ -95,7 +85,14 @@
     <id>jitpack.io</id>
     <url>https://jitpack.io</url>
   </repository>
-</repositories>
+    <repository>
+        <id>maven-central-repo</id>
+        <url>http://repo1.maven.org/maven2</url>
+        <snapshots>
+            <enabled>false</enabled>
+        </snapshots>
+    </repository>
+    </repositories>
 	
   <build>
       <plugins>
