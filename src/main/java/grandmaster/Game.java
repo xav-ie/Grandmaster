@@ -44,7 +44,9 @@ public class Game {
   //move helper
    public boolean playerMove(Player player, int x, int y, int xprime, int yprime)
    {
-
+      // for all i, j in blocks get gameboard.blocks[x][y].piece
+      // piece isinstance Pawn, King, Rook, Empty
+      // piece.color {"o", "W", "B"}
       Block startblock = gameboard.blocks[x][y];
       Block endblock = gameboard.blocks[xprime][yprime];
       Turn curturn = new Turn(startblock, endblock, player);
