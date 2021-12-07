@@ -3,22 +3,22 @@ package grandmaster;
 import java.lang.Math;
 
 public class Pawn extends Piece {
-	
+
 	public Pawn(String color)
     {
         super(color);
     }
-	
+
 	@Override
 	public boolean movePossible(Block from, Block to, Board b) {
 		//bishop can move diagonally only, no jumping!
-		
+
 		//check if same block
 		if (from.equals(to)) {
 			return false;
 		}
 		//System.out.println("passed empty");
-		
+
 
 		// check if landing block is same color
 		if(!(to.piece instanceof Empty)) {
@@ -73,11 +73,10 @@ public class Pawn extends Piece {
 		//System.out.println("passed empty");
 		// TODO:
 		// check if a piece was jumped
-		
 		return false;
 	}
-	
-		public String toString() 
+
+		public String toString()
 		{
 				return this.color + "p";
 

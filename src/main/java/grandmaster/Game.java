@@ -15,6 +15,8 @@ public class Game {
   public boolean black_check_flag = false;
   public boolean white_victory = false;
   public boolean black_victory = false;
+  public boolean white_checkmate_flag = false;
+  public boolean black_checkmate_flag = false;
 		public int currentX;
 		public int currentY;
   //check
@@ -52,7 +54,7 @@ public class Game {
 				this.currentX = x;
 				this.currentY = y;
 		}
-	
+
 
   //move helper
    public boolean playerMove(Player player, int x, int y, int xprime, int yprime)
@@ -115,17 +117,19 @@ public class Game {
       //System.out.println(this.vis());
       int kingx = -100;
       int kingy = -100;
-      for(int y = 0; y < gb.blocks[0].length; y++)
+      int placeheld = 0;
+      for(int yy = 0; yy < gb.blocks[placeheld].length; yy++)
       {
-        for(int x = 0; x < gb.blocks.length; x++)
+        for(int xx = 0; xx < gb.blocks.length; xx++)
         {
-          if(gb.blocks[x][y].piece.color.equals(in_turn_player.color))
+          if(Character.toString(gb.blocks[xx][yy].piece.color.charAt(0)).equals(in_turn_player.color))
           {
-            if(gb.blocks[x][y].piece instanceof King)
+            if(gb.blocks[xx][yy].piece instanceof King)
             {
-              kingx = x;
-              kingy = y;
+              kingx = xx;
+              kingy = yy;
             }
+            placeheld = xx;
           }
         }
       }
@@ -134,21 +138,23 @@ public class Game {
       {
         for(int x = 0; x < gb.blocks.length; x++)
         {
-          if(gb.blocks[x][y].piece.movePossible(gb.blocks[x][y],gb.blocks[kingx][kingy],gb))
+          if(!(Character.toString(gb.blocks[x][y].piece.color.charAt(0)).equals(in_turn_player.color)))
           {
-            //System.out.println(gb.blocks[x][y].piece);
-            if(in_turn_player.color.equals("B"))
+            if(gb.blocks[x][y].piece.movePossible(gb.blocks[x][y],gb.blocks[kingx][kingy],gb))
             {
-
-              black_check_flag = true;
-              return(true);
+              //System.out.println(gb.blocks[x][y].piece);
+              if(in_turn_player.color.equals("B"))
+              {
+                black_check_flag = true;
+                return(true);
+              }
+                if(in_turn_player.color.equals("W"))
+                {
+                  white_check_flag = true;
+                  return(true);
+                }
+              }
             }
-              if(in_turn_player.color.equals("W"))
-            {
-              white_check_flag = true;
-              return(true);
-            }
-          }
         }
       }
       if(in_turn_player.color.equals("B"))
@@ -160,21 +166,58 @@ public class Game {
         white_check_flag = false;
       }
      // System.out.println(this.vis());
-      return(false);
+      return false;
     }
+
+public boolean check_mated(Board gb)
+{
+    for(int ity = 0; ity < gb.blocks[0].length; ity++)
+    {
+      for(int itx = 0; itx < gb.blocks.length; itx++)
+      {
+        for(int y = 0; y < gb.blocks[0].length; y++)
+        {
+          for(int x = 0; x < gb.blocks.length; x++)
+          {
+            if(Character.toString(gb.blocks[x][y].piece.color.charAt(0)).equals(in_turn_player.color))
+            {
+              if(gb.blocks[x][y].piece.movePossible(gb.blocks[x][y],gb.blocks[itx][ity],gb))
+              {
+              //System.out.println(gb.blocks[x][y].piece);
+                if(in_turn_player.color.equals("B"))
+                {
+                  return false;
+                }
+                if(in_turn_player.color.equals("W"))
+                {
+                    return false;
+                  }
+                }
+                else if(black_check_flag == true && in_turn_player.color.equals("B"))
+                {
+                  black_checkmate_flag = true;
+                  return true;
+                }
+                else if(white_check_flag == true && in_turn_player.color.equals("W"))
+                {
+                  white_checkmate_flag = true;
+                  return true;
+                }
+          }
+        }
+      }
+    }
+  }
+  return false;
+}
     //move checks and confirmation
     private boolean turner(Turn turned, Player player)
     {
-      // System.out.println(turned.from.x);
-      // System.out.println(turned.from.y);
-      // System.out.println(turned.to.x);
-      // System.out.println(turned.to.y);
       //if someone's trying to move something that isn't even a piece
        if (turned.piece instanceof Empty)
        {
            return false;
        }
-       //System.out.println("passed empty");
 
        // valid player?
        if (player != in_turn_player)
@@ -183,14 +226,11 @@ public class Game {
        }
 
        //System.out.println("passed empty");
-
        //if the player thinks they can play the other side
        if (turned.piece.color != player.color)
        {
            return false;
        }
-
-       //System.out.println("passed empty");
 
 
        // is this move even possible
@@ -198,8 +238,6 @@ public class Game {
        {
            return false;
        }
-
-       //System.out.println("passed empty");
 
        //are you getting yourself into check ?
        //set up a hypothetical board to check
@@ -210,6 +248,8 @@ public class Game {
        {
          return false;
        }
+
+
 
        //System.out.println("passed empty");
 
@@ -232,6 +272,18 @@ public class Game {
                black_victory = true;
              }
            }
+       }
+
+       check_mated(gameboard);
+       if(white_checkmate_flag == true)
+       {
+         System.out.println("black victory");
+         black_victory = true;
+       }
+       if(black_checkmate_flag == true)
+       {
+         System.out.println("white victory");
+         white_victory = true;
        }
 
        //System.out.println("passed empty");
