@@ -32,10 +32,16 @@ public class Pawn extends Piece {
 		// pawn move black case
 		if (from.piece.color.equals("B")) {
 			if (from.x == to.x + 1 && from.y== to.y) {
+				if (to.piece.color.equals("W")){
+					return false;
+				}
 				return true;
 			}
 			if (from.x == 6 && to.x == 4 && from.y == to.y)
 			{
+				if (to.piece.color.equals("W")){
+					return false;
+				}
 				return true;
 			}
 			// pawn take. bad pawn!
@@ -56,9 +62,15 @@ public class Pawn extends Piece {
 			// System.out.println(to.y);
 			if ((from.x == to.x - 1) && (from.y == to.y)) {
 				return true;
+				if (to.piece.color.equals("B")){
+					return false;
+				}
 			}
 			if ((from.x == 1 && to.x == 3) && (from.y == to.y))
 			{
+				if (to.piece.color.equals("B")){
+					return false;
+				}
 				return true;
 			}
 			// pawn take. bad pawn!
