@@ -27,16 +27,62 @@ public class Rook extends Piece {
 		}
 
 		if (to.x == from.x) {
+			// direction is moving in y
+			if (to.y > from.y){
+				// check if it jumped in that direction
+				for (int i=from.y+1; i<to.y; i++){
+					if (!(b.getBlocks()[from.x][i].piece instanceof Empty)){
+						//System.out.println("move on y, positive");
+						//System.out.println(b.getBlocks()[i][from.y].piece);
+						return false;
+					}
+				}
+			} else {
+				for (int i=from.y-1; i>to.y; i--){
+					if (!(b.getBlocks()[from.x][i].piece instanceof Empty)){
+						//System.out.println("move on y, neg");
+						//System.out.println(b.getBlocks()[i][from.y].piece);
+						return false;
+					}
+				}
+			}
 			return true;
 		}
 
 		if (to.y == from.y) {
+			if (to.x > from.x){
+				// check if it jumped in that direction
+				for (int i=from.x+1; i<to.x; i++){
+					if (!(b.getBlocks()[i][from.y].piece instanceof Empty)){
+						//System.out.println("move on x, positive");
+						//System.out.println(b.getBlocks()[i][from.y].piece);
+						return false;
+					}
+				}
+			} else {
+				for (int i=from.x-1; i>to.x; i--){
+					if (!(b.getBlocks()[i][from.y].piece instanceof Empty)){
+						//System.out.println("move on x, neg");
+						//System.out.println(b.getBlocks()[i][from.y].piece);
+						return false;
+					}
+				}
+			}
 			return true;
 		}
 
 		// TODO:
 		// check if a piece was jumped
 
+
 		return false;
 	}
+
+
+		public String toString() 
+		{
+				return this.color + "r";
+
+		}
+	
 }

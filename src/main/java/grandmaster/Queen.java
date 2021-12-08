@@ -26,20 +26,95 @@ public class Queen extends Piece {
 		}
 		
 		if (to.x == from.x) {
-			return true;
+			// direction is moving in y
+			if (to.y > from.y){
+				// check if it jumped in that direction
+				for (int i=from.y+1; i<to.y; i++){
+					if (!(b.getBlocks()[from.x][i].piece instanceof Empty)){
+						//System.out.println("move on y, positive");
+						//System.out.println(b.getBlocks()[i][from.y].piece);
+						return false;
+					}
+				}
+			} else {
+				for (int i=from.y-1; i>to.y; i--){
+					if (!(b.getBlocks()[from.x][i].piece instanceof Empty)){
+						//System.out.println("move on y, neg");
+						//System.out.println(b.getBlocks()[i][from.y].piece);
+						return false;
+					}
+				}
+			}
 		}
-		
+
 		if (to.y == from.y) {
-			return true;
+			if (to.x > from.x){
+				// check if it jumped in that direction
+				for (int i=from.x+1; i<to.x; i++){
+					if (!(b.getBlocks()[i][from.y].piece instanceof Empty)){
+						//System.out.println("move on x, positive");
+						//System.out.println(b.getBlocks()[i][from.y].piece);
+						return false;
+					}
+				}
+			} else {
+				for (int i=from.x-1; i>to.x; i--){
+					if (!(b.getBlocks()[i][from.y].piece instanceof Empty)){
+						//System.out.println("move on x, neg");
+						//System.out.println(b.getBlocks()[i][from.y].piece);
+						return false;
+					}
+				}
+			}
 		}
 		
-		if (Math.abs(from.x - to.x) == Math.abs(from.y - to.y))
-	        return true;
+		int n = Math.abs(to.x - from.x);
 		
-		// TODO:
-		// check if a piece was jumped
+		if ((n != Math.abs(to.y - from.y)) || (n <= 0)) {
+			return false;
+		} else {
+			//check all directions
+			if (to.x > from.x){
+				if (to.y > from.y){
+					// +x, +y
+					for (int i = 1; i < n; i++){
+						if (!(b.getBlocks()[from.x+i][from.y+i].piece instanceof Empty)){
+							return false;
+						}
+					}
+				} else {
+					// +x, -y
+					for (int i = 1; i < n; i++){
+						if (!(b.getBlocks()[from.x+i][from.y-i].piece instanceof Empty)){
+							return false;
+						}
+					}
+				}
+			} else{
+				if (to.y > from.y){
+					// -x, +y
+					for (int i = 1; i < n; i++){
+						if (!(b.getBlocks()[from.x-i][from.y+i].piece instanceof Empty)){
+							return false;
+						}
+					}
+				} else {
+					// -x, -y
+					for (int i = 1; i < n; i++){
+						if (!(b.getBlocks()[from.x-i][from.y-i].piece instanceof Empty)){
+							return false;
+						}
+					}
+				}
+			}
+		}
 		
-		return false;
+		return true;
 	}
 	
+		public String toString() 
+		{
+				return this.color + "q";
+
+		}
 }

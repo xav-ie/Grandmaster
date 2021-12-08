@@ -1,0 +1,106 @@
+@font-face { 
+    font-family: 'Roboto'; 
+		font-weight: 400; 
+    src: url('Roboto-Regular.ttf'); 
+} 
+
+@font-face { 
+    font-family: 'Roboto'; 
+		font-weight: 100; 
+    src: url('Roboto-Thin.ttf'); 
+} 
+
+@font-face { 
+    font-family: 'Roboto'; 
+		font-weight: 300; 
+    src: url('Roboto-Light.ttf'); 
+} 
+
+@font-face { 
+    font-family: 'Roboto'; 
+		font-weight: 700; 
+    src: url('Roboto-Bold.ttf'); 
+} 
+@font-face {
+  font-family: 'Free Serif';
+  src: url('FreeSerif.ttf');
+}
+
+.root {
+    /* -fx-background-image: url("crown.png");*/
+		-fx-background-color: rgba(255,150,255,1);
+}
+
+.small {
+		-fx-font-size: 12px;
+}
+
+.medium {
+		-fx-font-size: 16px;
+}
+
+.large {
+		-fx-font-size: 32px;
+}
+
+.normal { 
+		-fx-font-family: "Roboto Normal"; 
+} 
+
+.thin { 
+		-fx-font-family: "Roboto Thin"; 
+} 
+
+.light { 
+		-fx-font-family: "Roboto Light"; 
+} 
+
+.bold { 
+		-fx-font-family: "Roboto Bold"; 
+} 
+
+.chessFont {
+		-fx-font-family: 'Free Serif';
+		-fx-font-size: 40px;
+}
+
+.dark-button {
+		-fx-background-color: black;
+		-fx-border-color: white;
+		-fx-text-fill: white;
+		-fx-padding: 10px;
+		-fx-cursor: hand;
+}
+
+.dark-button:hover {
+		-fx-background-color: white;
+		-fx-text-fill: black;
+}
+
+.dark-button:focused {
+		-fx-background-color: #ffcc00;
+}
+
+.menu {
+		-fx-cursor: hand;
+}
+
+.menu-item {
+		-fx-cursor: hand;
+}
+
+#modal {
+		-fx-background-color: black;
+		-fx-text-fill: white;
+}
+
+
+#playerOneVBox:disabled {
+		-fx-background-color: gray;
+}
+
+#playerTwoVBox:disabled {
+		-fx-background-color: gray;
+}
+
+

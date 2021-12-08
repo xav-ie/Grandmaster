@@ -13,16 +13,6 @@
         <javafx.maven.plugin.version>0.0.6</javafx.maven.plugin.version>
     </properties>
   <name>grandmaster</name>
-  
-<repositories>
-    <repository>
-        <id>maven-central-repo</id>
-        <url>http://repo1.maven.org/maven2</url>
-        <snapshots>
-            <enabled>false</enabled>
-        </snapshots>
-    </repository>
-</repositories>
 
   <dependencies>
     <dependency>
@@ -42,6 +32,29 @@
         <artifactId>javafx-controls</artifactId>
         <version>${javafx.version}</version>
     </dependency>
+		<dependency>
+			<groupId>org.javatuples</groupId>
+			<artifactId>javatuples</artifactId>
+			<version>1.2</version>
+		</dependency>
+		<dependency>
+        <groupId>org.openjfx</groupId>
+        <artifactId>javafx-fxml</artifactId>
+        <version>${javafx.version}</version>
+        <classifier>linux</classifier>
+    </dependency>
+    <dependency>
+        <groupId>org.openjfx</groupId>
+        <artifactId>javafx-fxml</artifactId>
+        <version>${javafx.version}</version>
+        <classifier>win</classifier>
+    </dependency>
+    <dependency>
+        <groupId>org.openjfx</groupId>
+        <artifactId>javafx-fxml</artifactId>
+        <version>${javafx.version}</version>
+        <classifier>mac</classifier>
+    </dependency>
     <dependency>
         <groupId>org.openjfx</groupId>
         <artifactId>javafx-graphics</artifactId>
@@ -60,8 +73,27 @@
         <version>${javafx.version}</version>
         <classifier>mac</classifier>
     </dependency>
+    <dependency>
+        <groupId>lk.vivoxalabs.customstage</groupId>
+        <artifactId>CustomStage</artifactId>
+        <version>1.3.2</version>
+     </dependency>
   </dependencies>
   
+<repositories>
+  <repository>
+    <id>jitpack.io</id>
+    <url>https://jitpack.io</url>
+  </repository>
+    <repository>
+        <id>maven-central-repo</id>
+        <url>http://repo1.maven.org/maven2</url>
+        <snapshots>
+            <enabled>false</enabled>
+        </snapshots>
+    </repository>
+    </repositories>
+	
   <build>
       <plugins>
           <plugin>
