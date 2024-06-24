@@ -25,11 +25,14 @@ public class King extends Piece {
 			}
 		}
 		//if same x
+		if((Math.abs(from.x - to.x) == 1) && (from.y == to.y)){return true;}
+		if((Math.abs(from.y - to.y) == 1) && (from.x == to.x)){return true;}
+		if((Math.abs(from.y - to.y) == Math.abs(from.x - to.x)) && (Math.abs(from.x - to.x)==1)){return true;}
 
-		if(Math.abs(from.x - to.x) == Math.abs(from.y - to.y) && Math.abs(from.x - to.x)==1 && Math.abs(from.y - to.y)==1)
-		{
-	    return true;
-		}
+		// if(Math.abs(from.x - to.x) == Math.abs(from.y - to.y) && Math.abs(from.x - to.x)==1 && Math.abs(from.y - to.y)==1)
+		// {
+	    // return true;
+		// }
 		// TODO:
 		// check if a piece was jumped
 

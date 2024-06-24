@@ -31,12 +31,43 @@ public class Bishop extends Piece {
 		
 		int n = Math.abs(to.x - from.x);
 		
-		if (n != Math.abs(to.y - from.y)) {
+		if ((n != Math.abs(to.y - from.y)) || (n <= 0)) {
 			return false;
-		}
-		
-		if (n <= 0) {
-			return false;
+		} else {
+			//check all directions
+			if (to.x > from.x){
+				if (to.y > from.y){
+					// +x, +y
+					for (int i = 1; i < n; i++){
+						if (!(b.getBlocks()[from.x+i][from.y+i].piece instanceof Empty)){
+							return false;
+						}
+					}
+				} else {
+					// +x, -y
+					for (int i = 1; i < n; i++){
+						if (!(b.getBlocks()[from.x+i][from.y-i].piece instanceof Empty)){
+							return false;
+						}
+					}
+				}
+			} else{
+				if (to.y > from.y){
+					// -x, +y
+					for (int i = 1; i < n; i++){
+						if (!(b.getBlocks()[from.x-i][from.y+i].piece instanceof Empty)){
+							return false;
+						}
+					}
+				} else {
+					// -x, -y
+					for (int i = 1; i < n; i++){
+						if (!(b.getBlocks()[from.x-i][from.y-i].piece instanceof Empty)){
+							return false;
+						}
+					}
+				}
+			}
 		}
 		
 		// TODO:

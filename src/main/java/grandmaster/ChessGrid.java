@@ -111,6 +111,18 @@ public class ChessGrid extends GridPane {
 										System.out.println("womp");
 								}
 					}
+					System.out.println("is white in check?");
+					System.out.println(ourGame.white_check_flag);
+					System.out.println("");
+					System.out.println("is black in check?");
+					System.out.println(ourGame.black_check_flag);
+					System.out.println("");
+					System.out.println("has white won?");
+					System.out.println(ourGame.white_victory);
+					System.out.println("");
+					System.out.println("has black won?");
+					System.out.println(ourGame.black_victory);
+					System.out.println("");
 					render();
 
 				}
