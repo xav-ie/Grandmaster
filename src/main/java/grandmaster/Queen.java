@@ -19,7 +19,7 @@ public class Queen extends Piece {
 		}
 		
 		// check if landing block is same color
-		if (to.piece != null) {
+		if (!(to.piece instanceof Empty)) {
 			if (to.piece.color.equals(from.piece.color)) {
 				return false;
 			}

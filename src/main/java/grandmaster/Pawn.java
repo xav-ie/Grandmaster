@@ -17,9 +17,11 @@ public class Pawn extends Piece {
 		if (from.equals(to)) {
 			return false;
 		}
+	
 		
+
 		// check if landing block is same color
-		if (to.piece != null) {
+		if(!(to.piece instanceof Empty)) {
 			if (to.piece.color.equals(from.piece.color)) {
 				return false;
 			}
@@ -30,8 +32,12 @@ public class Pawn extends Piece {
 			if (from.x == to.x && from.y - 1 == to.y) {
 				return true;
 			}
+			if (from.x == 6 && to.x == 4 && from.y == to.y)
+			{
+				return true;
+			}
 			// pawn take. bad pawn!
-			if (to.piece != null) {
+			if(!(to.piece instanceof Empty)) {
 				if (!to.piece.color.equals(from.piece.color)) {
 					if (Math.abs(to.x - from.x) == 1 && from.y - 1 == to.y) {
 						return true;
@@ -44,8 +50,12 @@ public class Pawn extends Piece {
 			if (from.x == to.x && from.y - 1 == to.y) {
 				return true;
 			}
+			if (from.x == 1 && to.x == 3 && from.y == to.y)
+			{
+				return true;
+			}
 			// pawn take. bad pawn!
-			if (to.piece != null) {
+			if(!(to.piece instanceof Empty)) {
 				if (!to.piece.color.equals(from.piece.color)) {
 					if (Math.abs(to.x - from.x) == 1 && from.y + 1 == to.y) {
 						return true;
